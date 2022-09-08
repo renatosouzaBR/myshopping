@@ -1,0 +1,10 @@
+{
+  "name": "ignite-reactnative",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "renatosouzaBR <natoicm@gmail.com>",
+  "license": "MIT",
+  "workspaces": {
+    "nohoist": ["**"]
+  }
+}
