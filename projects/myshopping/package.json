@@ -4,7 +4,8 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "start": "react-native start"
+    "start": "react-native start",
+    "firestore": "firebase emulators:start --only firestore --project myshopping-71b2b"
   },
   "dependencies": {
     "@expo-google-fonts/roboto": "^0.2.0",
