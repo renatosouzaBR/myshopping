@@ -9,6 +9,7 @@ import { File, FileProps } from "../../components/File";
 
 export function Receipts() {
   const [files, setFiles] = useState<FileProps[]>([]);
+  const [urlImage, setUrlImage] = useState("");
 
   async function fetchImages() {
     const fetchedFiles = await storage().ref("/images").list();
@@ -20,6 +21,11 @@ export function Receipts() {
     setFiles(formattedFiles);
   }
 
+  async function handleShowImage(path: string) {
+    const urlImage = await storage().ref(path).getDownloadURL();
+    setUrlImage(urlImage);
+  }
+
   useEffect(() => {
     fetchImages();
   }, []);
@@ -28,7 +34,7 @@ export function Receipts() {
     <Container>
       <Header title="Comprovantes" />
 
-      <Photo uri="" />
+      <Photo uri={urlImage} />
 
       <PhotoInfo>Informações da foto</PhotoInfo>
 
@@ -36,7 +42,11 @@ export function Receipts() {
         data={files}
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => (
-          <File data={item} onShow={() => {}} onDelete={() => {}} />
+          <File
+            data={item}
+            onShow={() => handleShowImage(item.path)}
+            onDelete={() => {}}
+          />
         )}
         contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
