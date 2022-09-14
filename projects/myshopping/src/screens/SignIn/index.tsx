@@ -40,6 +40,21 @@ export function SignIn() {
     }
   }
 
+  async function signInWithEmailAndPassword() {
+    try {
+      const { user } = await auth().signInWithEmailAndPassword(email, password);
+    } catch (error: any) {
+      console.log(error.code);
+
+      if (
+        error.code === "auth/wrong-password" ||
+        error.code === "auth/user-not-found"
+      ) {
+        return Alert.alert("Ops", "Credenciais inválidas, verifique!");
+      }
+    }
+  }
+
   return (
     <Container>
       <Title>MyShopping</Title>
@@ -53,7 +68,7 @@ export function SignIn() {
 
       <Input placeholder="senha" secureTextEntry onChangeText={setPassword} />
 
-      <Button title="Entrar" onPress={handleAnonymousSignIn} />
+      <Button title="Entrar" onPress={signInWithEmailAndPassword} />
 
       <Account>
         <ButtonText title="Recuperar senha" onPress={() => {}} />
