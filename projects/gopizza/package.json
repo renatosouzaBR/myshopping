@@ -9,6 +9,8 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/dm-sans": "^0.2.2",
+    "@expo-google-fonts/dm-serif-display": "^0.2.2",
     "@types/react": "~18.0.0",
     "@types/react-native": "~0.69.1",
     "expo": "~46.0.9",
