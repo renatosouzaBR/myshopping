@@ -3,6 +3,7 @@ import React from "react";
 import { Input } from "@/components/Forms/Input";
 
 import { Container } from "./styles";
+import { Button } from "@/components/Forms/Button";
 
 export function SignIn() {
   return (
@@ -15,6 +16,8 @@ export function SignIn() {
       />
 
       <Input placeholder="Senha" type="secundary" />
+
+      <Button title="Entrar" />
     </Container>
   );
 }
