@@ -1,23 +1,42 @@
 import React from "react";
+import { KeyboardAvoidingView } from "react-native";
+
+import brandImg from "@/assets/signin.png";
 
 import { Input } from "@/components/Forms/Input";
-
-import { Container } from "./styles";
 import { Button } from "@/components/Forms/Button";
+
+import {
+  Brand,
+  Container,
+  ForgotPasswordButton,
+  ForgotPasswordText,
+  Title,
+} from "./styles";
 
 export function SignIn() {
   return (
     <Container>
-      <Input
-        placeholder="E-mail"
-        type="secundary"
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
+      <KeyboardAvoidingView behavior="position">
+        <Brand source={brandImg} />
 
-      <Input placeholder="Senha" type="secundary" />
+        <Title>Login</Title>
 
-      <Button title="Entrar" />
+        <Input
+          placeholder="E-mail"
+          type="secundary"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+
+        <Input placeholder="Senha" type="secundary" />
+
+        <ForgotPasswordButton>
+          <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
+        </ForgotPasswordButton>
+
+        <Button title="Entrar" />
+      </KeyboardAvoidingView>
     </Container>
   );
 }

@@ -9,6 +9,8 @@ import * as SplashScreen from "expo-splash-screen";
 import theme from "@/global/styles/theme";
 import { SignIn } from "@/screens/SignIn";
 
+SplashScreen.preventAutoHideAsync();
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     DMSans_400Regular,
@@ -20,13 +22,6 @@ export default function App() {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
-
-  useEffect(() => {
-    async function prepare() {
-      await SplashScreen.preventAutoHideAsync();
-    }
-    prepare();
-  }, []);
 
   if (!fontsLoaded) return null;
 
