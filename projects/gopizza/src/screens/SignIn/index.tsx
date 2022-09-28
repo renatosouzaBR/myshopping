@@ -1,5 +1,9 @@
 import React from "react";
-import { KeyboardAvoidingView } from "react-native";
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+} from "react-native";
 
 import brandImg from "@/assets/signin.png";
 
@@ -16,27 +20,29 @@ import {
 
 export function SignIn() {
   return (
-    <Container>
-      <KeyboardAvoidingView behavior="position">
-        <Brand source={brandImg} />
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <Container>
+        <KeyboardAvoidingView behavior="position">
+          <Brand source={brandImg} />
 
-        <Title>Login</Title>
+          <Title>Login</Title>
 
-        <Input
-          placeholder="E-mail"
-          type="secundary"
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
+          <Input
+            placeholder="E-mail"
+            type="secundary"
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
 
-        <Input placeholder="Senha" type="secundary" />
+          <Input placeholder="Senha" type="secundary" />
 
-        <ForgotPasswordButton>
-          <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
-        </ForgotPasswordButton>
+          <ForgotPasswordButton>
+            <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
+          </ForgotPasswordButton>
 
-        <Button title="Entrar" />
-      </KeyboardAvoidingView>
-    </Container>
+          <Button title="Entrar" />
+        </KeyboardAvoidingView>
+      </Container>
+    </TouchableWithoutFeedback>
   );
 }
