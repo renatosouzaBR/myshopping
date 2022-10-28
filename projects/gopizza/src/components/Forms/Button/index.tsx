@@ -9,10 +9,10 @@ interface ButtonProps extends TouchableOpacityProps {
 }
 
 export function Button(props: ButtonProps) {
-  const { title, type = "primary", isLoading = false } = props;
+  const { title, type = "primary", isLoading = false, ...rest } = props;
 
   return (
-    <Container type={type} disabled={isLoading}>
+    <Container type={type} disabled={isLoading} {...rest}>
       {isLoading ? <Load /> : <Title>{title}</Title>}
     </Container>
   );
