@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -17,8 +17,18 @@ import {
   ForgotPasswordText,
   Title,
 } from "./styles";
+import { useAuth } from "@/hooks/auth";
 
 export function SignIn() {
+  const { signIn, isLogging } = useAuth();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function handleSignIn() {
+    await signIn(email, password);
+  }
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
@@ -32,15 +42,20 @@ export function SignIn() {
             type="secundary"
             autoCapitalize="none"
             autoCorrect={false}
+            onChangeText={setEmail}
           />
 
-          <Input placeholder="Senha" type="secundary" />
+          <Input
+            placeholder="Senha"
+            type="secundary"
+            onChangeText={setPassword}
+          />
 
           <ForgotPasswordButton>
             <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
           </ForgotPasswordButton>
 
-          <Button title="Entrar" />
+          <Button title="Entrar" isLoading={isLogging} onPress={handleSignIn} />
         </KeyboardAvoidingView>
       </Container>
     </TouchableWithoutFeedback>
