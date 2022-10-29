@@ -6,6 +6,7 @@ import {
 } from "react-native";
 
 import brandImg from "@/assets/signin.png";
+import { useAuth } from "@/hooks/auth";
 
 import { Input } from "@/components/Forms/Input";
 import { Button } from "@/components/Forms/Button";
@@ -17,7 +18,6 @@ import {
   ForgotPasswordText,
   Title,
 } from "./styles";
-import { useAuth } from "@/hooks/auth";
 
 export function SignIn() {
   const { signIn, isLogging } = useAuth();
