@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
+import { TouchableOpacity } from "react-native";
 
 export const Container = styled(LinearGradient).attrs(({ theme }) => ({
   colors: theme.COLORS.GRADIENT,
@@ -25,7 +26,7 @@ export const Title = styled.Text`
   margin-bottom: 22px;
 `;
 
-export const ForgotPasswordButton = styled.TouchableOpacity`
+export const ForgotPasswordButton = styled(TouchableOpacity)`
   margin: 4px 0 20px 0;
 `;
 

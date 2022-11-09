@@ -20,13 +20,17 @@ import {
 } from "./styles";
 
 export function SignIn() {
-  const { signIn, isLogging } = useAuth();
+  const { signIn, forgotPassword, isLogging } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   async function handleSignIn() {
     await signIn(email, password);
+  }
+
+  async function handleForgotPassword() {
+    await forgotPassword(email);
   }
 
   return (
@@ -51,7 +55,7 @@ export function SignIn() {
             onChangeText={setPassword}
           />
 
-          <ForgotPasswordButton>
+          <ForgotPasswordButton onPress={handleForgotPassword}>
             <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
           </ForgotPasswordButton>
 

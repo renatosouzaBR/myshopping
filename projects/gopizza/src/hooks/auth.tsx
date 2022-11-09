@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Alert } from "react-native";
 import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type User = {
   id: string;
@@ -15,11 +16,15 @@ interface AuthProviderProps {
 
 interface AuthContextProps {
   signIn(email: string, password: string): Promise<void>;
+  signOut(): Promise<void>;
+  forgotPassword(email: string): Promise<void>;
   isLogging: boolean;
   user: User | null;
 }
 
 const AuthContext = createContext({} as AuthContextProps);
+
+const USER_COLLECTION = "@gopizza:users";
 
 function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
@@ -42,7 +47,9 @@ function AuthProvider({ children }: AuthProviderProps) {
       const { name, isAdmin } = profile.data();
 
       if (profile.exists) {
-        setUser({ id: account.user.uid, name, isAdmin });
+        const userData = { id: account.user.uid, name, isAdmin };
+        await AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(userData));
+        setUser(userData);
       }
     } catch (error) {
       if (
@@ -61,8 +68,55 @@ function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  async function loadStoragedUserData() {
+    try {
+      setIsLogging(true);
+
+      const storedUser = await AsyncStorage.getItem(USER_COLLECTION);
+      if (storedUser) {
+        const userData = JSON.parse(storedUser) as User;
+        setUser(userData);
+        console.log(storedUser);
+      }
+    } finally {
+      setIsLogging(false);
+    }
+  }
+
+  async function signOut() {
+    await auth().signOut();
+    await AsyncStorage.removeItem(USER_COLLECTION);
+    setUser(null);
+  }
+
+  async function forgotPassword(email: string) {
+    try {
+      if (!email) {
+        return Alert.alert("Redefinir senha", "Informe o e-mail.");
+      }
+
+      await auth().sendPasswordResetEmail(email);
+
+      Alert.alert(
+        "Redefinir senha",
+        "Enviamos um link no seu e-mail para redefinir a senha"
+      );
+    } catch (error) {
+      Alert.alert(
+        "Redefinir senha",
+        "Não foi possível redefinir a senha, tente novamente"
+      );
+    }
+  }
+
+  useEffect(() => {
+    loadStoragedUserData();
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ signIn, isLogging, user }}>
+    <AuthContext.Provider
+      value={{ signIn, signOut, forgotPassword, isLogging, user }}
+    >
       {children}
     </AuthContext.Provider>
   );
