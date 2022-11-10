@@ -51,3 +51,37 @@ export const PickImageButton = styled(Button)`
   max-width: 90px;
   margin-left: 32px;
 `;
+
+export const Form = styled.View`
+  width: 100%;
+  padding: 24px;
+`;
+
+export const InputGroup = styled.View`
+  margin-bottom: 8px;
+`;
+
+export const InputGroupHeader = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const Label = styled.Text`
+  font-size: 14;
+  margin-bottom: 10px;
+
+  ${({ theme }) => css`
+    font-family: ${theme.FONTS.TEXT};
+    color: ${theme.COLORS.SECONDARY_900};
+  `}
+`;
+
+export const MaxCharacteres = styled.Text`
+  font-size: 10;
+
+  ${({ theme }) => css`
+    font-family: ${theme.FONTS.TEXT};
+    color: ${theme.COLORS.SECONDARY_900};
+  `}
+`;
