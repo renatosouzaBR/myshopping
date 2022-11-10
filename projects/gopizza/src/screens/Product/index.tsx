@@ -4,6 +4,7 @@ import * as ImagePicker from "expo-image-picker";
 
 import { BackButton } from "@/components/BackButton";
 import { Photo } from "@/components/Photo";
+import { PriceInput } from "@/components/Forms/PriceInput";
 
 import {
   Container,
@@ -50,6 +51,10 @@ export function Product() {
         <Photo uri={image} />
         <PickImageButton title="Carregar" onPress={handlePickImage} />
       </UploadWrapper>
+
+      <PriceInput size="P" />
+      <PriceInput size="M" />
+      <PriceInput size="G" />
     </Container>
   );
 }
