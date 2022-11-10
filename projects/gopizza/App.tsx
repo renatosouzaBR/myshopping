@@ -9,7 +9,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { AuthProvider } from "@/hooks/auth";
 
 import theme from "@/global/styles/theme";
-import { SignIn } from "@/screens/SignIn";
+import { Product } from "@/screens/Product";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,7 +32,7 @@ export default function App() {
       <StatusBar style="light" translucent backgroundColor="transparent" />
 
       <AuthProvider>
-        <SignIn />
+        <Product />
       </AuthProvider>
     </ThemeProvider>
   );
