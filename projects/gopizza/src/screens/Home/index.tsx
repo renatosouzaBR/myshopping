@@ -4,6 +4,7 @@ import { useTheme } from "styled-components/native";
 
 import { Emoji } from "@/assets/emoji";
 import { Search } from "@/components/Search";
+import { ProductCard } from "@/components/ProductCard";
 
 import {
   Container,
@@ -38,6 +39,12 @@ export function Home() {
         <MenuTitle>Cardápio</MenuTitle>
         <MenuItemsCount>32 pizzas</MenuItemsCount>
       </MenuHeader>
+
+      <ProductCard
+        photo_uri="https://github.com/renatosouzabr.png"
+        name="Margherita"
+        description="Mussarela, manjericão fresco, parmesão e tomate."
+      />
     </Container>
   );
 }
