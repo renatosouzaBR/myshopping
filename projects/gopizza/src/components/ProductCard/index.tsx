@@ -21,15 +21,18 @@ export interface ProductProps {
   description: string;
 }
 
-interface ProductCardProps extends TouchableOpacityProps, ProductProps {}
+interface ProductCardProps extends TouchableOpacityProps {
+  data: ProductProps;
+}
 
 export function ProductCard(props: ProductCardProps) {
-  const { photo_url, name, description, ...rest } = props;
+  const { data, ...rest } = props;
+  const { photo_url, name, description } = data;
   const { COLORS } = useTheme();
 
   return (
     <Container>
-      <Content {...rest}>
+      <Content activeOpacity={0.6} {...rest}>
         <Photo source={{ uri: photo_url }} />
 
         <Details>

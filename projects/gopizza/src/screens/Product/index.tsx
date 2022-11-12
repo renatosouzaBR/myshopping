@@ -82,7 +82,7 @@ export function Product() {
       const fileName = new Date().getTime();
       const reference = storage().ref(`/pizzas/${fileName}.png`);
       await reference.putFile(image);
-      const photo_url = reference.getDownloadURL();
+      const photo_url = await reference.getDownloadURL();
 
       await firestore()
         .collection("pizzas")

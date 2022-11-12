@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Alert } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Alert, FlatList } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 import firestore from "@react-native-firebase/firestore";
@@ -21,6 +21,7 @@ import {
 
 export function Home() {
   const { COLORS } = useTheme();
+  const [pizzas, setPizzas] = useState<ProductProps[]>([]);
 
   async function fetchPizzas(filter: string) {
     try {
@@ -33,12 +34,12 @@ export function Home() {
         .endAt(`${formattedFilter}\uf8ff`)
         .get();
 
-      const pizzas = docs.map((pizza) => ({
+      const data = docs.map((pizza) => ({
         id: pizza.id,
         ...pizza.data(),
       })) as ProductProps[];
 
-      console.log(pizzas);
+      setPizzas(data);
     } catch (error) {
       Alert.alert("Consulta", "Não foi possível consultas as pizzas");
     }
@@ -68,10 +69,15 @@ export function Home() {
         <MenuItemsCount>32 pizzas</MenuItemsCount>
       </MenuHeader>
 
-      <ProductCard
-        photo_url="https://github.com/renatosouzabr.png"
-        name="Margherita"
-        description="Mussarela, manjericão fresco, parmesão e tomate."
+      <FlatList
+        data={pizzas}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <ProductCard data={item} />}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingHorizontal: 24,
+          paddingVertical: 20,
+        }}
       />
     </Container>
   );

@@ -10,6 +10,7 @@ import { AuthProvider } from "@/hooks/auth";
 
 import theme from "@/global/styles/theme";
 import { Home } from "@/screens/Home";
+import { Product } from "@/screens/Product";
 
 SplashScreen.preventAutoHideAsync();
 

@@ -50,7 +50,7 @@ export const Description = styled.Text`
 
 export const Line = styled.View`
   height: 1px;
-  width: 100%;
+  flex: 1;
   background-color: ${({ theme }) => theme.COLORS.SHAPE};
 
   margin: 12px 0;
