@@ -21,7 +21,7 @@ import {
   InputGroup,
   Label,
   InputGroupHeader,
-  MaxCharacteres,
+  MaxCharacters,
 } from "./styles";
 
 export function Product() {
@@ -141,7 +141,7 @@ export function Product() {
           <InputGroup>
             <InputGroupHeader>
               <Label>Descrição</Label>
-              <MaxCharacteres>0 de 60 carecteres</MaxCharacteres>
+              <MaxCharacters>0 de 60 carecteres</MaxCharacters>
             </InputGroupHeader>
 
             <Input

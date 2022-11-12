@@ -77,7 +77,7 @@ export const Label = styled.Text`
   `}
 `;
 
-export const MaxCharacteres = styled.Text`
+export const MaxCharacters = styled.Text`
   font-size: 10;
 
   ${({ theme }) => css`
