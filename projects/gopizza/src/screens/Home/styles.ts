@@ -37,3 +37,32 @@ export const GreetingText = styled.Text`
 export const SignOutButton = styled.TouchableOpacity`
   padding: 2px;
 `;
+
+export const MenuHeader = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 25px 0 22px;
+  margin: 0 24px;
+  border-bottom-width: 1px;
+  border-bottom-color: ${({ theme }) => theme.COLORS.SHAPE};
+`;
+
+export const MenuTitle = styled.Text`
+  font-size: 20px;
+
+  ${({ theme }) => css`
+    color: ${theme.COLORS.SECONDARY_900};
+    font-family: ${theme.FONTS.TITLE};
+  `}
+`;
+
+export const MenuItemsCount = styled.Text`
+  font-size: 14px;
+
+  ${({ theme }) => css`
+    color: ${theme.COLORS.SECONDARY_900};
+    font-family: ${theme.FONTS.TEXT};
+  `}
+`;

@@ -10,6 +10,9 @@ import {
   GreetingText,
   GreetingWrapper,
   Header,
+  MenuHeader,
+  MenuItemsCount,
+  MenuTitle,
   SignOutButton,
 } from "./styles";
 
@@ -30,6 +33,11 @@ export function Home() {
       </Header>
 
       <Search onSearch={() => {}} onClear={() => {}} />
+
+      <MenuHeader>
+        <MenuTitle>Cardápio</MenuTitle>
+        <MenuItemsCount>32 pizzas</MenuItemsCount>
+      </MenuHeader>
     </Container>
   );
 }
