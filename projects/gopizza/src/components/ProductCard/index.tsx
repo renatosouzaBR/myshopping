@@ -14,20 +14,23 @@ import {
   Title,
 } from "./styles";
 
-interface ProductCardProps extends TouchableOpacityProps {
-  photo_uri: string;
+export interface ProductProps {
+  id: string;
+  photo_url: string;
   name: string;
   description: string;
 }
 
+interface ProductCardProps extends TouchableOpacityProps, ProductProps {}
+
 export function ProductCard(props: ProductCardProps) {
-  const { photo_uri, name, description, ...rest } = props;
+  const { photo_url, name, description, ...rest } = props;
   const { COLORS } = useTheme();
 
   return (
     <Container>
       <Content {...rest}>
-        <Photo source={{ uri: photo_uri }} />
+        <Photo source={{ uri: photo_url }} />
 
         <Details>
           <Identification>
