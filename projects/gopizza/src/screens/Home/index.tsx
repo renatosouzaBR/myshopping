@@ -3,6 +3,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 
 import { Emoji } from "@/assets/emoji";
+import { Search } from "@/components/Search";
 
 import {
   Container,
@@ -27,6 +28,8 @@ export function Home() {
           <MaterialIcons name="exit-to-app" size={24} color={COLORS.TITLE} />
         </SignOutButton>
       </Header>
+
+      <Search onSearch={() => {}} onClear={() => {}} />
     </Container>
   );
 }
