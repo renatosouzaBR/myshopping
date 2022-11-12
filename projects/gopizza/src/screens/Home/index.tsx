@@ -22,6 +22,7 @@ import {
 export function Home() {
   const { COLORS } = useTheme();
   const [pizzas, setPizzas] = useState<ProductProps[]>([]);
+  const [search, setSearch] = useState("");
 
   async function fetchPizzas(filter: string) {
     try {
@@ -45,6 +46,15 @@ export function Home() {
     }
   }
 
+  function handleSearch() {
+    fetchPizzas(search);
+  }
+
+  function handleSearchClear() {
+    setSearch("");
+    fetchPizzas("");
+  }
+
   useEffect(() => {
     fetchPizzas("");
   }, []);
@@ -62,7 +72,12 @@ export function Home() {
         </SignOutButton>
       </Header>
 
-      <Search onSearch={() => {}} onClear={() => {}} />
+      <Search
+        onChangeText={setSearch}
+        value={search}
+        onSearch={handleSearch}
+        onClear={handleSearchClear}
+      />
 
       <MenuHeader>
         <MenuTitle>Cardápio</MenuTitle>
