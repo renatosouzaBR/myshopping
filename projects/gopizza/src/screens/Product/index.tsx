@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, ScrollView, TouchableOpacity } from "react-native";
+import { useRoute } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 import firestore from "@react-native-firebase/firestore";
 import storage from "@react-native-firebase/storage";
+
+import { ProductNavigationProps } from "@/@types/navigation";
 
 import { BackButton } from "@/components/BackButton";
 import { Photo } from "@/components/Photo";
 import { PriceInput } from "@/components/Forms/PriceInput";
 import { Input } from "@/components/Forms/Input";
 import { Button } from "@/components/Forms/Button";
+import { ProductProps } from "@/components/ProductCard";
 
 import {
   Container,
@@ -24,8 +28,21 @@ import {
   MaxCharacters,
 } from "./styles";
 
+interface PizzaResponse extends ProductProps {
+  photo_path: string;
+  prices_sizes: {
+    p: string;
+    m: string;
+    g: string;
+  };
+}
+
 export function Product() {
+  const route = useRoute();
+  const { id } = route.params as ProductNavigationProps;
+
   const [isLoading, setIsLoading] = useState(false);
+  const [photoPath, setPhotoPath] = useState("");
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -113,6 +130,32 @@ export function Product() {
       setIsLoading(false);
     }
   }
+
+  async function fetchPizza(id: string) {
+    try {
+      const response = await firestore().collection("pizzas").doc(id).get();
+      const data = response.data() as PizzaResponse;
+
+      setImage(data.photo_url);
+      setPhotoPath(data.photo_path);
+      setName(data.name);
+      setDescription(data.description);
+      setSizePriceP(data.prices_sizes.p);
+      setSizePriceM(data.prices_sizes.m);
+      setSizePriceG(data.prices_sizes.g);
+    } catch (error) {
+      Alert.alert(
+        "Edição",
+        "Não foi possível carregar os dados da pizza selecionada"
+      );
+    }
+  }
+
+  useEffect(() => {
+    if (id) {
+      fetchPizza(id);
+    }
+  }, [id]);
 
   return (
     <Container behavior="position">

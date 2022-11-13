@@ -68,7 +68,7 @@ export const InputGroupHeader = styled.View`
 `;
 
 export const Label = styled.Text`
-  font-size: 14;
+  font-size: 14px;
   margin-bottom: 10px;
 
   ${({ theme }) => css`
@@ -78,7 +78,7 @@ export const Label = styled.Text`
 `;
 
 export const MaxCharacters = styled.Text`
-  font-size: 10;
+  font-size: 10px;
 
   ${({ theme }) => css`
     font-family: ${theme.FONTS.TEXT};
