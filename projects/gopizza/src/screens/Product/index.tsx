@@ -121,6 +121,8 @@ export function Product() {
         "Adicionar pizza",
         "Cadastro de pizza realizado com sucesso!"
       );
+
+      navigation.goBack();
     } catch (error) {
       console.log(error);
       Alert.alert(
