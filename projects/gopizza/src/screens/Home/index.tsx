@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Alert, FlatList } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import firestore from "@react-native-firebase/firestore";
 
 import { Emoji } from "@/assets/emoji";
@@ -17,6 +17,7 @@ import {
   MenuHeader,
   MenuItemsCount,
   MenuTitle,
+  NewProductButton,
   SignOutButton,
 } from "./styles";
 
@@ -62,9 +63,15 @@ export function Home() {
     navigation.navigate("product", { id });
   }
 
-  useEffect(() => {
-    fetchPizzas("");
-  }, []);
+  function handleNewPizza() {
+    navigation.navigate("product", {});
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchPizzas("");
+    }, [])
+  );
 
   return (
     <Container>
@@ -103,6 +110,8 @@ export function Home() {
           paddingVertical: 20,
         }}
       />
+
+      <NewProductButton title="Cadastrar Pizza" onPress={handleNewPizza} />
     </Container>
   );
 }
