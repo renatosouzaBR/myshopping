@@ -43,8 +43,8 @@ export const Radio = styled.View<RadioButtonProps>`
 `;
 
 export const Selected = styled.View`
-  width: 8;
-  height: 8;
+  width: 8px;
+  height: 8px;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.COLORS.SUCCESS_900};
 `;
