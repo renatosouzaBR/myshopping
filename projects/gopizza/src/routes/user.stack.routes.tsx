@@ -5,7 +5,7 @@ import { Product } from "@/screens/Product";
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
-export function UserRoutes() {
+export function UserStackRoutes() {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
       <Screen name="home" component={Home} />
