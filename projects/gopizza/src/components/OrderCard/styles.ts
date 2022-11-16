@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components/native";
+import { TouchableOpacity } from "react-native";
 
 type Status = "Pronto" | "Preparando" | "Entregue";
 
@@ -10,7 +11,7 @@ export interface StatusProps {
   status: Status;
 }
 
-export const Container = styled.View<ContainerProps>`
+export const Container = styled(TouchableOpacity)<ContainerProps>`
   width: 50%;
   padding: 24px 0;
   align-items: center;

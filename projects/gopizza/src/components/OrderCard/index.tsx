@@ -1,4 +1,5 @@
 import React from "react";
+import { TouchableOpacityProps } from "react-native";
 
 import {
   Container,
@@ -20,15 +21,15 @@ export interface OrderProps {
   status: string;
 }
 
-interface OrderCardProps extends ContainerProps {
+interface OrderCardProps extends ContainerProps, TouchableOpacityProps {
   data: OrderProps;
 }
 
 export function OrderCard(props: OrderCardProps) {
-  const { index, data } = props;
+  const { index, data, ...rest } = props;
 
   return (
-    <Container index={index}>
+    <Container index={index} {...rest}>
       <Photo source={{ uri: data.photo_url }} />
       <Name>{data.pizza}</Name>
       <Details>
